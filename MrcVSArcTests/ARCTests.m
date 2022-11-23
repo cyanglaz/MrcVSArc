@@ -15,23 +15,25 @@
 
 
 - (void)testPerformance {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-      [self loopDictionary];
-    }];
+  [self measureBlock:^{
+    [self loopDictionary];
+  }];
 }
 
 
 - (void)loopDictionary {
-  NSUInteger length = 500000;
+  NSUInteger length = 50000;
   NSMutableArray* array = [[NSMutableArray alloc] initWithCapacity:length];
   for (UInt32 i = 0; i < length; i++) {
-    [array addObject:[self getDict]];
+    id dic = [self getDict];
+    [array addObject:dic];
   }
 }
 
 - (NSDictionary *)getDict {
-  return @{@"key": @"value"};
+  NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+  [dictionary setObject:@"object" forKey:@"key"];
+  return dictionary;
 }
 
 @end
